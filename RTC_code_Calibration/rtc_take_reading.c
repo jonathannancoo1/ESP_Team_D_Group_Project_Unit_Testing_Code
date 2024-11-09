@@ -23,6 +23,8 @@ void app_main(){
 
 
 
+TickType_t start_tick = xTaskGetTickCount();
+
 //Installing i2c Device Driver
 i2cdev_init();
 
@@ -74,6 +76,15 @@ pinconfig.clk_stretch_tick = 1000;
     read=ds3231_get_time(&dev,&time_read);
 
     if(read==ESP_OK){
+
+            TickType_t end_tick2 = xTaskGetTickCount();
+            TickType_t tick_difference2 = end_tick2 - start_tick;
+            printf("Execution time: %d ticks\n", tick_difference2);
+
+            // Convert ticks to milliseconds
+            int execution_time_ms = tick_difference2 * portTICK_PERIOD_MS;
+            printf("Execution time: %d milliseconds\n", execution_time_ms);
+
 
         printf("Time has been read\n");
 
