@@ -142,7 +142,7 @@ float calculate_frequency(int8_t *binary_buffer, int sample_count, int sample_ra
     for (int i = 0; i < sample_idx; i++) {
         ESP_LOGI(TAG, "Sample %d: %d", i + 1, binary_buffer[i]); // Print each sample value
     }
-    float frequency = calculate_frequency(&binary_buffer, SAMPLE_COUNT, SAMPLE_RATE_HZ);
+    float frequency = calculate_frequency(&binary_buffer, 151, 30);
     // Free the dynamically allocated buffer
     free(adc_buffer);
     ESP_LOGI(TAG, "Calculated frequency: %.2f Hz", frequency);
